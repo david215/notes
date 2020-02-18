@@ -23,3 +23,40 @@
                 A frame is over when...
                 A batter is out when...
                 ```
+- Dealing with switch statements
+    - obviously, functions with switch statements (or if/else chains) are not
+      doing just one thing.
+    - should only be used to create polymorphic objects in the basement of an
+      abstract factory.
+- Using Descriptive Names
+    - using descriptive names can help identify functions that are doing more
+      than just one thing.
+    - the smaller and more focused a function is, the easier it is to choose a
+      descriptive name.
+    - hunting for a good name often results in a favorable restructuring of the
+      code.
+
+# Function Arguments
+- less arguments the better
+    - niladic, monadic, dyadic, triadic...
+    - as the number of arguments grows, the function becomes harder to reason
+      about.
+    - from a testing point of view, it is best to avoid the scenario of
+      reasoning about every possible combination of arguments.
+- Common monadic forms
+    1. ask a question about the argument.
+        - e.g. boolean fileExists("MyFile")
+    2. operate on the argument, transform it into something else, and return it.
+        - e.g. InputStream fileOpen("MyFile")
+    3. event: there is an input argument but no output argument
+        - use the argument to alter the state of the system.
+        - e.g.  void passwordAttemptFailedNTimes(int attempts)
+- Reducing the number of arguments
+    1. make the function a method, e.g. writeField(outputStream, name) ->
+       outputStream.writeField(name)
+    2. make the argument a field of the class so you don't have to pass it.
+    3. make argument objects/lists, e.g. Point class, variable arguments.
+- Flag arguments
+    - a "truly terrible practice" which immediately signals that a function does
+      more than one thing (if flag is true, do X; else do Y).
+
