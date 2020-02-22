@@ -81,6 +81,21 @@ function divide(x, y):
         - Multiplication of numbers at most n bits long - O(n^2).
         - (Optional) Division of a numbers at most 2n bits long - O(n^2). 
 ### 1.2.2 Modular exponentiation
+- In cryptosystems, we need to compute x^y mod N for x, y, N that are hundreds
+  of bits long.
+- The bit complexity of modular exponentiation is O(n^3).
+    - Naive exponentiation of x^y mod N requires y multiplications, i.e. O(2^n)
+      multiplcations. 
+    - By instead **repeatedly squaring** x, we can compute x^y mod N in only
+      O(n) multiplications, where each modular multiplication takes O(n^2).
+- Pseudocode
+```
+function modexp(x, y, N):
+    if y is even:
+        return (modexp(x, y//2, N))^2 mod N
+    else:
+        return x * (modexp(x, y//2, N))^2 mod N
+```
 ### 1.2.3 Euclid's algorithm for greatest common divisor
 ### 1.2.4 An extension of Euclid's algorithm
 ### 1.2.5 Modular division
